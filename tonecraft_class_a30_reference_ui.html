@@ -1,0 +1,145 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TONECRAFT — CLASS A30</title><style>
+:root{--ink:#090b0e;--metal:#252a30;--pink:#8c365e;--gold:#d8b86d;--cream:#f1e8d6;--muted:#a9a49b}
+*{box-sizing:border-box}body{margin:0;color:var(--cream);font:13px/1.35 Arial,Helvetica,sans-serif;background:#0a0c0e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E")}
+.topbar{height:auto;min-height:66px;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:linear-gradient(#24272b,#0c0e11);border-bottom:1px solid #4c5054;box-shadow:0 4px 15px #000}
+.logo{font-weight:1000;font-size:20px;letter-spacing:.15em;color:#eee}.logo span{color:#d7b76d}.logo small{display:block;font-size:8px;letter-spacing:.3em;color:#aaa;margin-top:2px}
+.top-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.live-state{font-size:10px;color:#ddd;margin-right:8px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#602a30;margin-right:6px}.dot.on{background:#4fe09b;box-shadow:0 0 9px #4fe09b}
+.metal-btn{color:#eee;background:linear-gradient(#555b60,#1a1e22);border:1px solid #777;padding:8px 12px;border-radius:4px;font-size:10px;font-weight:bold;letter-spacing:.1em;cursor:pointer;box-shadow:inset 0 1px #ffffff55}.metal-btn.red{background:linear-gradient(#b75b69,#4a1828);border-color:#d48b8b}
+main{max-width:1260px;margin:auto;padding:14px 18px 28px}.studio{position:relative;overflow:hidden;padding:16px 18px 22px;min-height:600px;background:linear-gradient(180deg,#202326 0%,#39322a 34%,#4b4034 68%,#17191b 100%);border:1px solid #55534d;box-shadow:0 15px 35px #000c,inset 0 0 80px #0009}
+.studio:before{content:"";position:absolute;inset:0;opacity:.17;background:repeating-linear-gradient(0deg,transparent 0 55px,#c4a47a 56px,#16110d 58px),linear-gradient(90deg,#000 0%,transparent 25%,#0005 70%,#000 100%);pointer-events:none}
+.studio-glow{position:absolute;top:0;left:35%;width:30%;height:240px;background:#c6b49a;filter:blur(90px);opacity:.12}
+.studio-head{position:relative;display:flex;justify-content:space-between;color:#c4b9a8;font-size:9px;letter-spacing:.22em;margin-bottom:12px}
+.pedal-strip{position:relative;display:flex;justify-content:space-between;gap:6px;align-items:end;padding:4px 0 16px;border-bottom:3px solid #111;box-shadow:0 2px #7d786e;margin-bottom:20px}
+.module{position:relative;z-index:1;width:7.7%;min-width:42px;height:68px;border:1px solid #777;background:linear-gradient(145deg,#747a7b,#272d30 58%,#111);color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:space-around;cursor:pointer;box-shadow:0 5px 7px #000b,inset 0 1px #fff7;border-radius:3px}
+.module:nth-child(3n){background:linear-gradient(145deg,#a5a18e,#3b3a32 60%,#111)}.module.active{outline:2px solid #d8b86d;box-shadow:0 0 14px #d8b86d77}.module-art{font-size:25px;text-shadow:0 2px 4px #000}.module b{font-size:9px;letter-spacing:.1em}
+.amp-panel{position:relative;z-index:1;display:grid;grid-template-columns:95px 1fr 78px;align-items:center;gap:10px;max-width:960px;margin:0 auto;background:linear-gradient(100deg,#61243e,#a84f75 45%,#742d50);border:5px ridge #d58ca8;border-radius:12px;padding:12px 15px;box-shadow:0 8px 18px #000c,inset 0 0 18px #290b1b}
+.jack-column{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:8px;font-weight:bold;letter-spacing:.1em}.jack-column i{width:25px;height:25px;border-radius:50%;border:5px ridge #d0c6b7;background:radial-gradient(circle,#090a0d 40%,#333 48%,#08090b 70%);box-shadow:0 2px 5px #000}
+.amp-main{min-width:0}.amp-brand{display:flex;justify-content:space-between;align-items:center;font-size:8px;letter-spacing:.16em;color:#f3cddd}.amp-brand b{font-size:17px;letter-spacing:.12em;color:#fff}
+.amp-knobs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:12px 0}.control{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}.control label{font-size:9px;font-weight:900;letter-spacing:.1em;color:#fff}.control output{font-size:8px;color:#f7dce7}
+input[type=range]{width:100%;accent-color:#e8c2d2}
+.amp-bottom{display:flex;justify-content:space-between;border-top:1px solid #edb7cc88;padding-top:7px;font-size:8px;letter-spacing:.14em;color:#f5d7e4}
+.power-switch{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:8px;font-weight:bold;letter-spacing:.1em}.power-switch button{width:37px;height:37px;border-radius:50%;background:radial-gradient(circle at 35% 25%,#fff,#777 25%,#17191c 65%);border:3px solid #222;color:#141414;font-size:20px;cursor:pointer;box-shadow:0 3px 5px #000}.power-led{width:8px;height:8px;border-radius:50%;background:#51202a}.power-led.on{background:#ff4e65;box-shadow:0 0 10px #ff4e65}
+.cabinet-row{position:relative;z-index:1;display:flex;align-items:end;justify-content:space-around;gap:12px;margin:38px auto 0;max-width:1000px;height:205px}
+.cabinet{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:10px 8px 13px;background:linear-gradient(145deg,#20252a,#080a0c);border:5px ridge #555b60;box-shadow:0 10px 17px #000b,inset 0 0 0 2px #111;border-radius:5px;color:#eee;text-align:center}
+.cabinet b{font-size:12px;letter-spacing:.15em}.cab-top{font-size:8px;letter-spacing:.15em;color:#d9d4c8;align-self:flex-start}.small-cab{width:18%;height:145px}.main-cab{width:25%;height:178px}.collection{width:25%;height:190px;background:linear-gradient(145deg,#333a3e,#0b0d10)}
+.speaker{width:76%;aspect-ratio:1;border-radius:50%;border:7px solid #17191b;background:radial-gradient(circle,#111 0 12%,#292d30 13% 18%,#090a0c 19% 42%,#383c3e 43% 47%,#090a0b 48%);box-shadow:0 0 0 2px #555,inset 0 0 12px #000}
+.collection .speaker{width:80%;opacity:.8}.collection b{font-size:17px}
+.power-amp{width:16%;height:120px;align-self:center;background:linear-gradient(#25292d,#0d0f12);border:3px ridge #777;padding:9px;display:flex;flex-direction:column;align-items:center;justify-content:space-around;box-shadow:0 6px 12px #000}.power-label{font-size:9px;letter-spacing:.15em}.power-dial{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff2d2,#c4a66b 45%,#342a1a 70%);border:3px solid #171717;color:#333;display:grid;place-items:center;font-size:22px}.power-amp small{font-size:8px;color:#c7c1b6}
+.lower{display:grid;grid-template-columns:1fr 1.35fr;gap:12px;margin-top:13px}.rack,.interface{background:linear-gradient(145deg,#272c31,#101317);border:1px solid #62676a;padding:14px;box-shadow:0 6px 15px #0008}.rack-title{font-size:10px;letter-spacing:.2em;font-weight:bold;color:#d7c9b8;border-bottom:1px solid #555;padding-bottom:8px;margin-bottom:10px}.rack .amp-knobs{grid-template-columns:repeat(4,1fr)}.rack .control{background:#20252a;border:1px solid #42474b;padding:8px}.rack-foot{display:flex;justify-content:space-between;color:#aaa;font-size:8px;letter-spacing:.12em}
+.interface-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.interface label{display:block;color:#c8bfb2;font-size:9px;letter-spacing:.1em;margin-bottom:5px}.interface select{width:100%;background:#0c0f12;color:#eee;border:1px solid #62676b;padding:8px}.interface small{font-size:10px;color:#bdb5a9}.meter{height:8px;background:#070809;border-radius:10px;overflow:hidden}.meter>div{height:100%;width:0;background:linear-gradient(90deg,#3cba7c,#d6c153,#ed5962)}
+.presets{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap}.preset{padding:7px 12px;color:#eee;background:linear-gradient(#4c5359,#1c2024);border:1px solid #737a7d;border-radius:3px;font-size:9px;letter-spacing:.12em;cursor:pointer}
+.hint{font-size:10px;color:#928e87;text-align:center;margin:12px auto}
+@media(max-width:700px){main{padding:8px}.topbar{padding:10px;align-items:flex-start;flex-direction:column}.studio{padding:10px;min-height:0}.module{height:55px;min-width:0}.module-art{font-size:18px}.module b{font-size:7px}.amp-panel{grid-template-columns:52px 1fr 48px;padding:8px 6px;gap:5px}.amp-brand b{font-size:12px}.jack-column{font-size:6px}.jack-column i{width:19px;height:19px}.amp-knobs{gap:4px}.control label{font-size:7px}.cabinet-row{height:150px;gap:5px;margin-top:25px}.small-cab{height:105px}.main-cab{height:130px}.collection{height:140px}.cabinet{padding:6px 3px 8px;border-width:3px}.cabinet b{font-size:8px}.collection b{font-size:11px}.power-amp{height:90px;padding:4px}.power-dial{width:29px;height:29px}.lower{grid-template-columns:1fr}.rack .amp-knobs{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:390px){.module b{font-size:6px}.module-art{font-size:16px}.pedal-strip{gap:3px}.amp-panel{grid-template-columns:42px 1fr 38px}.amp-brand{font-size:6px}.amp-brand b{font-size:10px}.amp-bottom{font-size:6px}.power-switch button{width:29px;height:29px}}
+</style></head><body><header class="topbar">
+ <div class="logo">TONE<span>CRAFT</span><small>VIRTUAL GUITAR PROCESSOR</small></div>
+ <div class="top-actions"><span class="live-state"><i class="dot" id="audioDot"></i><b id="audioState">POWER OFF</b></span><button class="metal-btn red" id="start">POWER ON</button><button class="metal-btn" id="stop">STOP</button><button class="metal-btn" id="save">SAVE</button><button class="metal-btn" id="reset">RESET</button></div>
+</header>
+<main>
+ <section class="studio">
+  <div class="studio-glow"></div>
+  <div class="studio-head"><span>GUITAR RIG / SIGNAL CHAIN</span><span id="inputState">INPUT: NOT CONNECTED</span></div>
+  <div class="pedal-strip" id="pedals"></div>
+  <div class="amp-panel">
+   <div class="jack-column"><span>NORMAL</span><i></i><span>TOP BOOST</span><i></i></div>
+   <div class="amp-main"><div class="amp-brand">VINTAGE TUBE AMPLIFIER <b>CLASS A30</b></div><div class="amp-knobs" id="mainControls"></div><div class="amp-bottom"><span>● SIGNAL</span><span>CLASS A30 · CUSTOM SERIES</span></div></div>
+   <div class="power-switch"><span>POWER</span><div class="power-led" id="powerLed"></div><button id="powerToggle" aria-label="Power toggle">⏻</button><small>ON / OFF</small></div>
+  </div>
+  <div class="cabinet-row">
+   <div class="cabinet small-cab"><div class="cab-top">TONECRAFT</div><div class="speaker"></div><b>CLASS A30</b></div>
+   <div class="power-amp"><div class="power-label">POWER AMP</div><div class="power-dial">◉</div><small>LEVEL <span id="powerValue">75%</span></small></div>
+   <div class="cabinet main-cab"><div class="cab-top">CLASS A30</div><div class="speaker"></div><b>CLASS A30</b></div>
+   <div class="cabinet collection"><div class="speaker"></div><b>COLLECTION</b></div>
+  </div>
+ </section>
+ <section class="lower">
+  <div class="rack">
+   <div class="rack-title">POWER AMP / OUTPUT SECTION</div>
+   <div class="amp-knobs" id="ampKnobs"></div>
+   <div class="rack-foot"><span>MASTER OUTPUT</span><span>STEREO · 48 KHZ</span></div>
+  </div>
+  <div class="interface">
+   <div class="rack-title">AUDIO INTERFACE</div>
+   <div class="interface-grid"><div><label>INPUT SOURCE</label><select id="inputMode"><option>Microphone / USB Audio Interface</option></select></div>
+   <div><label>OUTPUT LEVEL</label><input id="outputLevel" type="range" min="0" max="1" step=".01" value=".75"></div>
+   <div><label>INPUT METER</label><div class="meter"><div id="meterBar"></div></div></div>
+   <div><label>STATUS</label><small id="ioMessage">Press POWER ON and allow microphone access.</small></div></div>
+   <div class="presets"><button class="preset" data-preset="clean">CLEAN</button><button class="preset" data-preset="crunch">CRUNCH</button><button class="preset" data-preset="lead">LEAD</button><button class="preset" data-preset="ambient">AMBIENT</button></div>
+  </div>
+ </section>
+ <p class="hint">Connect a guitar through a USB audio interface for best results. Use headphones to avoid feedback. Browser microphone access requires HTTPS or localhost.</p>
+</main><script>
+const effects=[
+ ['GATE','Noise Gate','gate'],['COMP','Compressor','comp'],['WAH','Auto Wah','wah'],['OD','Overdrive','drive'],['DIST','Distortion','dist'],['FUZZ','Fuzz','fuzz'],['CHORUS','Chorus','chorus'],['FLANGE','Flanger','flange'],['PHASER','Phaser','phaser'],['EQ','3-Band EQ','eq'],['DELAY','Stereo Delay','delay'],['REVERB','Hall Reverb','reverb']
+];
+const defaults={gate:false,comp:false,wah:false,drive:false,dist:false,fuzz:false,chorus:false,flange:false,phaser:false,eq:false,delay:false,reverb:false};
+let enabled={...defaults}, values={gain:0.48,master:0.7,cut:0.5,bass:0.58,treble:0.62,output:.75,drive:0.45,delay:0.28,reverb:0.32,level:0.7};
+let ctx=null,stream=null,source=null,analyser=null,raf=null,chainNodes=[],inputGain=null,outputGain=null;
+const $=id=>document.getElementById(id);
+function knobControl(label,key,min=0,max=1,step=.01){return `<div class="control"><label>${label}</label><input aria-label="${label}" type="range" min="${min}" max="${max}" step="${step}" value="${values[key]}" data-key="${key}"><output>${Math.round(values[key]*100)}</output></div>`}
+
+const effectIcons={gate:"▣",comp:"◉",wah:"◒",chorus:"〰",flange:"≋",phaser:"◎",drive:"⚡",dist:"✹",fuzz:"✦",eq:"▥",delay:"◷",reverb:"♧"};
+function render(){
+ const order=[['GATE','gate'],['WAH','wah'],['CMP','comp'],['MOD','chorus'],['EFX','drive'],['VOL','eq'],['AMP','dist'],['IR','fuzz'],['EQ','eq'],['S/R','phaser'],['DLY','delay'],['RVB','reverb']];
+ $('pedals').innerHTML=order.map(([label,key],i)=>`<button class="module ${enabled[key]?'active':''}" data-toggle="${key}" title="${label}"><span class="module-art">${effectIcons[key]||'◈'}</span><b>${label}</b></button>`).join('');
+ $('mainControls').innerHTML=[['GAIN','gain'],['MASTER','master'],['CUT','cut'],['BASS','bass'],['TREB','treble']].map(([l,k])=>knobControl(l,k)).join('');
+ $('ampKnobs').innerHTML=[['LEVEL','output'],['DRIVE','drive'],['DELAY','delay'],['REVERB','reverb']].map(([l,k])=>knobControl(l,k)).join('');
+ document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',()=>{const key=b.dataset.toggle;enabled[key]=!enabled[key];render();rebuild();}));
+ document.querySelectorAll('input[data-key]').forEach(el=>el.addEventListener('input',()=>{values[el.dataset.key]=+el.value;el.nextElementSibling.textContent=Math.round(+el.value*100);if(el.dataset.key==='output')$('outputLevel').value=el.value;rebuild();}));
+}
+function makeDistortion(amount){const ws=ctx.createWaveShaper();const n=44100,curve=new Float32Array(n);const k=amount*100+1;for(let i=0;i<n;i++){const x=i*2/n-1;curve[i]=(1+k)*x/(1+k*Math.abs(x));}ws.curve=curve;ws.oversample='4x';return ws}
+function impulse(seconds=2.2,decay=2.5){const len=ctx.sampleRate*seconds,b=ctx.createBuffer(2,len,ctx.sampleRate);for(let c=0;c<2;c++){const d=b.getChannelData(c);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,decay);}return b}
+function clearChain(){chainNodes.forEach(n=>{try{n.disconnect()}catch(e){}});chainNodes=[]}
+function add(n){chainNodes.push(n);return n}
+function rebuild(){
+ if(!ctx||!source||!outputGain)return;clearChain();let prev=source;
+ const connect=n=>{prev.connect(n);prev=n;add(n)};
+ if(enabled.gate){const g=ctx.createDynamicsCompressor();g.threshold.value=-48;g.knee.value=0;g.ratio.value=18;g.attack.value=.003;g.release.value=.12;connect(g)}
+ if(enabled.comp){const c=ctx.createDynamicsCompressor();c.threshold.value=-28;c.knee.value=24;c.ratio.value=4;c.attack.value=.008;c.release.value=.18;connect(c)}
+ if(enabled.wah){const f=ctx.createBiquadFilter();f.type='bandpass';f.frequency.value=450+values.drive*1700;f.Q.value=5;connect(f)}
+ if(enabled.drive||enabled.dist||enabled.fuzz){const amt=Math.min(.98,(enabled.drive?.25:0)+(enabled.dist?.5:0)+(enabled.fuzz?.72:0)+values.drive*.35);connect(makeDistortion(amt))}
+ if(enabled.chorus||enabled.flange){const d=ctx.createDelay(.08);d.delayTime.value=enabled.flange?.004:.018;const wet=ctx.createGain();wet.gain.value=enabled.flange?.45:.28;const dry=ctx.createGain();dry.gain.value=.82;const mix=ctx.createGain();prev.connect(dry);prev.connect(d);d.connect(wet);dry.connect(mix);wet.connect(mix);prev=mix;[d,wet,dry,mix].forEach(add);const osc=ctx.createOscillator(),og=ctx.createGain();osc.frequency.value=enabled.flange?.35:.8;og.gain.value=enabled.flange?.003:.006;osc.connect(og);og.connect(d.delayTime);osc.start();add(osc);add(og)}
+ if(enabled.phaser){for(let i=0;i<4;i++){const f=ctx.createBiquadFilter();f.type='allpass';f.frequency.value=500+i*700;f.Q.value=.8;connect(f)}}
+ if(enabled.eq){for(const [type,freq,gain] of [['lowshelf',120,(values.bass-.5)*24],['peaking',1000,0],['highshelf',5000,(values.treble-.5)*24]]){const f=ctx.createBiquadFilter();f.type=type;f.frequency.value=freq;f.gain.value=gain;connect(f)}}
+ // Amp tone stack and preamp drive
+ const pre=ctx.createGain();pre.gain.value=(.6+values.gain*2.4)*values.master;connect(pre);
+ const low=ctx.createBiquadFilter();low.type='lowshelf';low.frequency.value=140;low.gain.value=(values.bass-.5)*20;connect(low);
+ const high=ctx.createBiquadFilter();high.type='highshelf';high.frequency.value=4200;high.gain.value=(values.treble-.5)*20;connect(high);
+ const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=900+values.cut*10500;connect(lp);
+ if(enabled.delay){const d=ctx.createDelay(1.5),fb=ctx.createGain(),wet=ctx.createGain(),mix=ctx.createGain();d.delayTime.value=.12+values.delay*.55;fb.gain.value=.25+values.delay*.35;wet.gain.value=.3;prev.connect(mix);prev.connect(d);d.connect(fb);fb.connect(d);d.connect(wet);wet.connect(mix);prev=mix;[d,fb,wet,mix].forEach(add)}
+ if(enabled.reverb){const c=ctx.createConvolver(),wet=ctx.createGain(),dry=ctx.createGain(),mix=ctx.createGain();c.buffer=impulse(2.5,2.7);wet.gain.value=.2+values.reverb*.45;prev.connect(dry);prev.connect(c);c.connect(wet);dry.connect(mix);wet.connect(mix);prev=mix;[c,wet,dry,mix].forEach(add)}
+ prev.connect(outputGain);
+}
+async function startAudio(){
+ try{if(ctx&&ctx.state!=='closed')await ctx.close();ctx=new (window.AudioContext||window.webkitAudioContext)({latencyHint:'interactive'});stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});source=ctx.createMediaStreamSource(stream);analyser=ctx.createAnalyser();analyser.fftSize=256;source.connect(analyser);outputGain=ctx.createGain();outputGain.gain.value=values.output;outputGain.connect(ctx.destination);rebuild();$('audioDot').classList.add('on');$('audioState').textContent='Audio engine running';$('inputState').textContent='Input: microphone / selected interface';$('ioMessage').textContent='Live input connected. Play your guitar.';meterLoop();}
+ catch(e){$('ioMessage').textContent='Could not start: '+e.message;$('audioState').textContent='Audio input unavailable';}
+}
+function meterLoop(){if(!analyser)return;const a=new Uint8Array(analyser.frequencyBinCount);analyser.getByteTimeDomainData(a);let sum=0;for(const x of a){const v=(x-128)/128;sum+=v*v}const rms=Math.sqrt(sum/a.length);$('meterBar').style.width=Math.min(100,rms*300)+'%';raf=requestAnimationFrame(meterLoop)}
+function stopAudio(){if(raf)cancelAnimationFrame(raf);if(stream)stream.getTracks().forEach(t=>t.stop());if(ctx)ctx.close();ctx=stream=source=analyser=outputGain=null;$('audioDot').classList.remove('on');$('audioState').textContent='Audio engine stopped';$('inputState').textContent='Input: not connected';$('meterBar').style.width='0%';$('ioMessage').textContent='Audio stopped.'}
+$('start').onclick=startAudio;$('stop').onclick=stopAudio;
+$('outputLevel').oninput=e=>{values.output=+e.target.value;if(outputGain)outputGain.gain.value=values.output;document.querySelectorAll('[data-key="output"]').forEach(x=>{x.value=values.output;x.nextElementSibling.textContent=Math.round(values.output*100)})};
+$('reset').onclick=()=>{enabled={...defaults};values={gain:.48,master:.7,cut:.5,bass:.58,treble:.62,output:.75,drive:.45,delay:.28,reverb:.32,level:.7};$('outputLevel').value=values.output;render();rebuild()};
+$('save').onclick=()=>{const name=prompt('Preset name?','My Guitar Tone');if(name){const all=JSON.parse(localStorage.getItem('toneLabPresets')||'{}');all[name]={enabled,values};localStorage.setItem('toneLabPresets',JSON.stringify(all));alert('Saved preset: '+name)}};
+document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{const p=b.dataset.preset;enabled={...defaults};if(p==='clean'){enabled.comp=true;enabled.eq=true;enabled.reverb=true;values.gain=.25;values.bass=.58;values.treble=.72;values.reverb=.22}
+if(p==='crunch'){enabled.comp=true;enabled.drive=true;enabled.delay=true;values.gain=.62;values.drive=.48;values.delay=.18}
+if(p==='lead'){enabled.comp=true;enabled.dist=true;enabled.delay=true;enabled.reverb=true;values.gain=.82;values.drive=.72;values.delay=.32;values.reverb=.2}
+if(p==='ambient'){enabled.chorus=true;enabled.delay=true;enabled.reverb=true;values.gain=.32;values.delay=.7;values.reverb=.8}
+$('outputLevel').value=values.output;render();rebuild()});
+render();
+</script><script>
+
+$('powerToggle').onclick=()=>{const on=$('powerLed').classList.toggle('on');if(on)startAudio();else stopAudio()};
+$('outputLevel').oninput=e=>{values.output=+e.target.value;if(outputGain)outputGain.gain.value=values.output;$('powerValue').textContent=Math.round(values.output*100)+'%';document.querySelectorAll('[data-key="output"]').forEach(x=>{x.value=values.output;x.nextElementSibling.textContent=Math.round(values.output*100)})};
+const oldReset=$('reset').onclick;
+$('reset').onclick=()=>{oldReset();$('powerLed').classList.remove('on');$('outputLevel').value=values.output;$('powerValue').textContent=Math.round(values.output*100)+'%'};
+const oldStart=$('start').onclick;
+$('start').onclick=()=>{startAudio();$('powerLed').classList.add('on')};
+const oldStop=$('stop').onclick;
+$('stop').onclick=()=>{stopAudio();$('powerLed').classList.remove('on')};
+document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{const p=b.dataset.preset;enabled={...defaults};if(p==='clean'){enabled.comp=true;enabled.eq=true;enabled.reverb=true;values.gain=.25;values.bass=.58;values.treble=.72;values.reverb=.22}
+if(p==='crunch'){enabled.comp=true;enabled.drive=true;enabled.delay=true;values.gain=.62;values.drive=.48;values.delay=.18}
+if(p==='lead'){enabled.comp=true;enabled.dist=true;enabled.delay=true;enabled.reverb=true;values.gain=.82;values.drive=.72;values.delay=.32;values.reverb=.2}
+if(p==='ambient'){enabled.chorus=true;enabled.delay=true;enabled.reverb=true;values.gain=.32;values.delay=.7;values.reverb=.8}
+$('outputLevel').value=values.output;render();rebuild()});
+$('powerValue').textContent=Math.round(values.output*100)+'%';
+</script></body></html>
